@@ -7,6 +7,10 @@ import DigitalFlagship from "@/components/DigitalFlagship";
 import OperationalIntelligence from "@/components/OperationalIntelligence";
 import SpatialCommerce from "@/components/SpatialCommerce";
 import TechnicalSovereignty from "@/components/TechnicalSovereignty";
+import CapabilityTechStack from "@/components/CapabilityTechStack";
+import CapabilityProcess from "@/components/CapabilityProcess";
+import CapabilitySovereign from "@/components/CapabilitySovereign";
+import CapabilityOptimization from "@/components/CapabilityOptimization";
 
 const Scene = dynamic(() => import("@/components/Scene"), {
   ssr: false, // 3D canvas must render on client
@@ -27,8 +31,8 @@ export default function Home() {
           <p className="mt-8 max-w-[800px] text-center text-xl md:text-2xl text-[#E5E5E5]/80 font-light tracking-wide drop-shadow-md">
             Engineering the Inevitable.
           </p>
-          <div className="mt-12 text-xs font-mono tracking-[0.3em] uppercase text-[#E5E5E5]/40 border border-[#E5E5E5]/10 px-6 py-3 rounded-full backdrop-blur-md">
-            Digital Supremacy Required
+          <div className="mt-12 text-xs md:text-sm font-mono tracking-widest text-[#E5E5E5]/60 border border-[#E5E5E5]/10 px-6 py-4 rounded-xl backdrop-blur-md max-w-2xl text-center leading-relaxed">
+            Aethos is not a design studio. We are a digital engineering firm. We build the infrastructure that powers high-spec visionaries.
           </div>
         </div>
 
@@ -55,6 +59,22 @@ export default function Home() {
       {/* Module 4: Technical Sovereignty */}
       <div className="relative z-10">
         <TechnicalSovereignty />
+      </div>
+
+      {/* The Capability Protocol */}
+      <div className="relative z-10 bg-black/20 border-t border-white/5 mt-16 pb-16">
+        <div className="w-full flex justify-center pt-24 pb-8">
+          <div className="text-xs font-mono tracking-widest text-[#E5E5E5]/40 border border-[#E5E5E5]/10 px-8 py-2 rounded-full backdrop-blur-xl">
+            THE CAPABILITY PROTOCOL
+          </div>
+        </div>
+        <CapabilityTechStack />
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent my-8" />
+        <CapabilityProcess />
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent my-8" />
+        <CapabilitySovereign />
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent my-8" />
+        <CapabilityOptimization />
       </div>
 
       {/* Glassmorphic Contact Edge Node */}
