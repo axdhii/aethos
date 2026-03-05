@@ -69,7 +69,7 @@ export default function DigitalFlagship() {
                 <div className="flex flex-col gap-8">
                     <div className="font-mono text-xs tracking-[0.3em] text-[#E5E5E5]/40 uppercase flex items-center gap-4">
                         <span className="w-2 h-2 bg-white rounded-full animate-pulse"></span>
-                        Module 01: Digital Flagship
+                        Digital Flagship
                     </div>
 
                     <h2 className="text-4xl md:text-6xl font-light tracking-tighter text-[var(--color-aethos-silver)] leading-tight">

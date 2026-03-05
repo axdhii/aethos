@@ -52,7 +52,7 @@ export default function PrecisionSoftware() {
                 <motion.div style={{ y: headerY }} className="mb-24">
                     <div className="font-mono text-xs tracking-[0.3em] text-[#E5E5E5]/40 uppercase mb-6 flex items-center gap-4">
                         <span className="w-2 h-2 bg-white rounded-full"></span>
-                        Module 03: Precision Software
+                        Precision Software
                     </div>
                     <h2 className="text-5xl md:text-7xl font-light tracking-tighter text-[var(--color-aethos-silver)] max-w-3xl">
                         High-Spec Engineering.

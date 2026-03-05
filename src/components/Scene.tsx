@@ -11,6 +11,14 @@ import FluidShaderMaterial from "./FluidShaderMaterial";
 
 extend({ FluidShaderMaterial });
 
+const globalMouse = { x: 0, y: 0 };
+if (typeof window !== "undefined") {
+    window.addEventListener("mousemove", (e) => {
+        globalMouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+        globalMouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+    });
+}
+
 function BackgroundShader() {
     const materialRef = useRef<any>(null);
     const scrollPercentRef = useRef(0);
@@ -35,8 +43,8 @@ function BackgroundShader() {
             materialRef.current.uTime = state.clock.elapsedTime;
             // Pass mouse coordinates (-1 to 1 mapped to 0 to 1)
             materialRef.current.uMouse.set(
-                (state.pointer.x + 1) / 2,
-                (state.pointer.y + 1) / 2
+                (globalMouse.x + 1) / 2,
+                (globalMouse.y + 1) / 2
             );
             // Pass resolution
             materialRef.current.uResolution.set(window.innerWidth, window.innerHeight);
@@ -68,8 +76,8 @@ function TheCore() {
             meshRef.current.rotation.x += delta * 0.2;
             // Add parallax movement based on mouse
             meshRef.current.rotation.y += delta * 0.3;
-            meshRef.current.position.x = THREE.MathUtils.lerp(meshRef.current.position.x, (state.pointer.x * 0.5), 0.1);
-            meshRef.current.position.y = THREE.MathUtils.lerp(meshRef.current.position.y, (state.pointer.y * 0.5), 0.1);
+            meshRef.current.position.x = THREE.MathUtils.lerp(meshRef.current.position.x, (globalMouse.x * 0.5), 0.1);
+            meshRef.current.position.y = THREE.MathUtils.lerp(meshRef.current.position.y, (globalMouse.y * 0.5), 0.1);
         }
     });
 
@@ -102,7 +110,6 @@ export default function Scene() {
                 camera={{ position: [0, 0, 8], fov: 45 }}
                 dpr={[1, 1.5]}
                 style={{ pointerEvents: "none" }}
-                eventSource={typeof window !== "undefined" ? document.body : undefined}
             >
                 <BackgroundShader />
 

@@ -21,7 +21,7 @@ export default function OperationalIntelligence() {
                 <div className="text-center mb-20 max-w-3xl mx-auto">
                     <div className="font-mono text-xs tracking-[0.3em] text-[#E5E5E5]/40 uppercase mb-6 flex items-center justify-center gap-4">
                         <span className="w-2 h-2 bg-white rounded-full"></span>
-                        Module 02: Operational Intelligence
+                        Operational Intelligence
                     </div>
 
                     <h2 className="text-5xl md:text-7xl font-light tracking-tighter text-[var(--color-aethos-silver)] mb-6">

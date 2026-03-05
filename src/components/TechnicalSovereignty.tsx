@@ -90,7 +90,7 @@ export default function TechnicalSovereignty() {
             <div className="md:w-1/2 z-10">
                 <div className="font-mono text-xs tracking-[0.3em] text-[#E5E5E5]/40 uppercase mb-8 flex items-center gap-4">
                     <span className="w-2 h-2 bg-white rounded-full"></span>
-                    Module 04: Technical Sovereignty
+                    Technical Sovereignty
                 </div>
 
                 <h2 className="text-4xl md:text-6xl font-light tracking-tighter text-[var(--color-aethos-silver)] mb-6">
