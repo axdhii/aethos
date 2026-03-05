@@ -2,7 +2,7 @@
 
 import { Canvas, extend } from "@react-three/fiber";
 import { Environment, Float, Preload } from "@react-three/drei";
-import { Suspense, useRef } from "react";
+import { Suspense, useRef, useEffect } from "react";
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 import { EffectComposer, ChromaticAberration, Noise, Vignette } from "@react-three/postprocessing";
@@ -13,6 +13,22 @@ extend({ FluidShaderMaterial });
 
 function BackgroundShader() {
     const materialRef = useRef<any>(null);
+    const scrollPercentRef = useRef(0);
+
+    // Track scroll events OUTSIDE the frame loop to prevent layout thrashing
+    useEffect(() => {
+        const handleScroll = () => {
+            const maxScroll = Math.max(
+                document.body.scrollHeight - window.innerHeight,
+                1
+            );
+            scrollPercentRef.current = window.scrollY / maxScroll;
+        };
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        // Initial call
+        handleScroll();
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     useFrame((state) => {
         if (materialRef.current) {
@@ -25,17 +41,10 @@ function BackgroundShader() {
             // Pass resolution
             materialRef.current.uResolution.set(window.innerWidth, window.innerHeight);
 
-            // Calculate and pass scroll depth (0 to 1)
-            const scrollY = window.scrollY;
-            const maxScroll = Math.max(
-                document.body.scrollHeight - window.innerHeight,
-                1 // Prevent division by zero
-            );
-            const scrollPercent = scrollY / maxScroll;
             // Lerp the scroll value slightly for smoothness
             materialRef.current.uScroll = THREE.MathUtils.lerp(
                 materialRef.current.uScroll || 0,
-                scrollPercent,
+                scrollPercentRef.current,
                 0.05
             );
         }
@@ -91,7 +100,7 @@ export default function Scene() {
         <div className="fixed inset-0 z-0 pointer-events-none">
             <Canvas
                 camera={{ position: [0, 0, 8], fov: 45 }}
-                dpr={[1, 2]}
+                dpr={[1, 1.5]}
                 style={{ pointerEvents: "none" }}
                 eventSource={typeof window !== "undefined" ? document.body : undefined}
             >

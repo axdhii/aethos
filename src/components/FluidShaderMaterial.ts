@@ -110,21 +110,21 @@ const FluidShaderMaterial = shaderMaterial(
       float dist = distance(st, uMouse);
       float mouseInfluence = smoothstep(0.8, 0.0, dist) * 0.6;
 
-      // Add movement over time and scale, map scroll to Y offset.
-      vec3 pos = vec3(st * 3.0, uTime * 0.1);
-      pos.y += uScroll * 1.5;
+      // Add movement over time and scale, map scroll to Y offset. Larger scale for softer look.
+      vec3 pos = vec3(st * 1.5, uTime * 0.08); // was 3.0 and 0.1
+      pos.y += uScroll * 1.0;
       
       // Warp the coordinates using noise
-      float noise1 = cnoise(pos + vec3(uMouse * 2.0, uScroll) * mouseInfluence);
-      // Change turbulence based on scroll depth
-      float turbulence = 2.0 + (uScroll * 2.0);
-      float noise2 = cnoise(pos + vec3(noise1 * turbulence) - uTime * 0.05);
+      float noise1 = cnoise(pos + vec3(uMouse * 1.5, uScroll) * mouseInfluence);
+      // Change turbulence based on scroll depth (softer interpolation) 
+      float turbulence = 0.8 + (uScroll * 1.2); 
+      float noise2 = cnoise(pos + vec3(noise1 * turbulence) - uTime * 0.03);
       
-      // Calculate final fluid color
-      float finalNoise = smoothstep(-0.5, 0.5, noise2);
+      // Calculate final fluid color using a wider, softer gradient 
+      float finalNoise = smoothstep(-1.2, 1.2, noise2);
       
       // Mix the colors. More silver / lighter as you scroll deeper.
-      float silverMix = 0.3 + (uScroll * 0.3); // from 0.3 to 0.6 max
+      float silverMix = 0.2 + (uScroll * 0.4); 
       vec3 color = mix(uColorObsidian, uColorSilver * silverMix, finalNoise + mouseInfluence);
       
       // Add subtle shimmering grain

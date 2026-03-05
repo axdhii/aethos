@@ -2,8 +2,6 @@
 
 import dynamic from "next/dynamic";
 import Preloader from "@/components/Preloader";
-import Services from "@/components/Services";
-import AntigravityWorkflow from "@/components/AntigravityWorkflow";
 import ContactPortal from "@/components/ContactPortal";
 import DigitalFlagship from "@/components/DigitalFlagship";
 import OperationalIntelligence from "@/components/OperationalIntelligence";
@@ -57,16 +55,6 @@ export default function Home() {
       {/* Module 4: Technical Sovereignty */}
       <div className="relative z-10">
         <TechnicalSovereignty />
-      </div>
-
-      {/* The 3D Service Cards */}
-      <div className="relative z-10">
-        <Services />
-      </div>
-
-      {/* The Antigravity High-Speed Execution Workflow */}
-      <div className="relative z-10">
-        <AntigravityWorkflow />
       </div>
 
       {/* Glassmorphic Contact Edge Node */}
