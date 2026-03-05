@@ -52,18 +52,10 @@ export default function Preloader() {
                 duration: 0.8,
                 ease: "power2.out",
             }, "-=0.4")
-            // 4. The "Haptic" Flicker Effect
+            // 4. Smooth Fade out entire preloader
             .to(containerRef.current, {
                 opacity: 0,
-                duration: 0.1,
-                yoyo: true,
-                repeat: 3,
-                ease: "steps(1)", // digital binary feel
-            })
-            // 5. Fade out entire preloader
-            .to(containerRef.current, {
-                opacity: 0,
-                duration: 0.6,
+                duration: 1.2,
                 ease: "power2.inOut",
                 display: "none",
             });

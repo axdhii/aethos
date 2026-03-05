@@ -12,8 +12,14 @@ export default function CustomCursor() {
 
     // Instant update for the core dot
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+    const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
+        // Detect if the device relies on touch
+        if (window.matchMedia("(pointer: coarse)").matches) {
+            setIsMobile(true);
+            return;
+        }
         const moveCursor = (e: MouseEvent) => {
             cursorX.set(e.clientX);
             cursorY.set(e.clientY);
@@ -44,7 +50,9 @@ export default function CustomCursor() {
             window.removeEventListener("mousemove", moveCursor);
             window.removeEventListener("mouseover", handleMouseOver);
         };
-    }, [cursorX, cursorY]);
+    }, [cursorX, cursorY, isMobile]);
+
+    if (isMobile) return null;
 
     return (
         <>
