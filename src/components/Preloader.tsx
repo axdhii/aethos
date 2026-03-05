@@ -39,26 +39,19 @@ export default function Preloader() {
             ease: "power2.inOut",
             stagger: 0.1,
         })
-            // 2. Singularity Expansion (Wait a moment, then flash)
-            .to(singularityRef.current, {
-                scale: 1,
-                opacity: 1,
-                duration: 0.8,
-                ease: "power4.inOut",
-            }, "-=0.2")
-            // 3. The Text Reveal from the light
+            // 2. The Text Reveal
             .to(textRef.current, {
                 opacity: 1,
                 duration: 0.8,
                 ease: "power2.out",
-            }, "-=0.4")
-            // 4. Smooth Fade out entire preloader
+            }, "-=0.2")
+            // 3. Smooth Fade out entire preloader
             .to(containerRef.current, {
                 opacity: 0,
-                duration: 1.2,
+                duration: 1.0,
                 ease: "power2.inOut",
                 display: "none",
-            });
+            }, "+=0.3");
 
         return () => {
             document.body.style.overflow = "auto";
@@ -73,12 +66,6 @@ export default function Preloader() {
             ref={containerRef}
             className="fixed inset-0 z-[100] flex items-center justify-center bg-[var(--color-aethos-obsidian)]"
         >
-            <div
-                ref={singularityRef}
-                className="absolute w-[2px] h-[2px] rounded-full bg-white shadow-[0_0_40px_10px_rgba(255,255,255,0.8)] opacity-0 scale-0 origin-center mix-blend-screen"
-                style={{ transform: 'scale(100)' }}
-            />
-
             {/* 3D Wireframe Monogram Placeholder (SVG) */}
             <div className="relative z-10 flex flex-col items-center">
                 <svg width="120" height="120" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
